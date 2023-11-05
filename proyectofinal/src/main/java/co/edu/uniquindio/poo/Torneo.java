@@ -7,13 +7,18 @@
  */
 package co.edu.uniquindio.poo;
 
+import static main.java.co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
+
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.function.Predicate;
-import static main.java.co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
+
+import main.java.co.edu.uniquindio.poo.Equipo;
+import main.java.co.edu.uniquindio.poo.Jugador;
+import main.java.co.edu.uniquindio.poo.TipoTorneo;
 
 public class Torneo {
     private final String nombre;
@@ -25,6 +30,7 @@ public class Torneo {
     private final int valorInscripcion;
     private final TipoTorneo tipoTorneo;
     private final Collection<Equipo> equipos;
+    private final GeneroTorneo generoTorneo;
 
     public Torneo(String nombre, LocalDate fechaInicio,
             LocalDate fechaInicioInscripciones,
@@ -205,4 +211,3 @@ public class Torneo {
         ASSERTION.assertion( limiteEdad == 0 || limiteEdad >= edadAlInicioTorneo , "No se pueden registrar jugadores que excedan el limite de edad del torneo"); 
     }
 }
-
