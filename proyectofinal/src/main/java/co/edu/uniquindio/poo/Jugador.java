@@ -15,13 +15,13 @@ import util.AssertionUtil;
 
 public class Jugador extends Persona {
     private final LocalDate fechaNacimiento;
-    public GeneroTorneo generoTorneo;
+    public GeneroPersona generoPersona;
 
-    public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento, GeneroTorneo generoTorneo) {
+    public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento, GeneroPersona generoPersona) {
         super(nombre, apellido, email, celular);
         AssertionUtil.ASSERTION.assertion( fechaNacimiento != null , "La fecha de nacimiento es requerida");
         this.fechaNacimiento = fechaNacimiento;
-        this
+        this.generoPersona = generoPersona;
     }
 
     public LocalDate getFechaNacimiento() {

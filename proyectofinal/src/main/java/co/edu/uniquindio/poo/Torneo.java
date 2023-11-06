@@ -185,6 +185,14 @@ public class Torneo {
         equipo.registrarJugador(jugador);
     }
 
+
+    public void validacionGeneroJugadorYTorneo(){
+        
+    }
+
+
+
+
     /**
      * Permite buscar un jugador basado en su nombre y apellido en todos los equipos registrados en el torneo.
      * @param jugador Jugador que se desea buscar

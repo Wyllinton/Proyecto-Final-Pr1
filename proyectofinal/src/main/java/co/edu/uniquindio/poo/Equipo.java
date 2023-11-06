@@ -7,6 +7,7 @@
  */
 package co.edu.uniquindio.poo;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Optional;
@@ -14,14 +15,14 @@ import java.util.function.Predicate;
 
 import util.AssertionUtil;
 
-public record Equipo(String nombre, Persona representante, Collection<Jugador> jugadores) {
+public record Equipo(String nombre, Persona representante, Collection<Jugador> jugadores, Collection<Enfrentamiento> enfrentamientos) {
     public Equipo {
         AssertionUtil.ASSERTION.assertion(nombre != null && !nombre.trim().isEmpty(), "El nombre es requerido");
         AssertionUtil.ASSERTION.assertion(representante != null, "El representante es requerido");
     }
 
     public Equipo(String nombre, Persona representante) {
-        this(nombre, representante, new LinkedList<>());
+        this(nombre, representante, new LinkedList<>(), new ArrayList<>());
     }
 
     /**
