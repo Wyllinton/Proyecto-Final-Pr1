@@ -7,29 +7,24 @@
  */
 package main.java.co.edu.uniquindio.poo;
 
-import java.time.LocalDate;
-import java.time.Period;
 import static main.java.co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
-public class Jugador extends Persona {
-    private final LocalDate fechaNacimiento;
+import java.time.LocalDate;
 
-    public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento) {
+public class Juez extends Persona {
+    private final LocalDate fechaNacimiento;
+    private String licenciaJuez;
+
+    public Juez(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento, String licenciaJuez) {
         super(nombre, apellido, email, celular);
         ASSERTION.assertion( fechaNacimiento != null , "La fecha de nacimiento es requerida");
+        assert fechaNacimiento.isBefore(fechaNacimiento.now());
+        assert lienciaJuez != null;
+        this.licenciaJuez = licenciaJuez;
         this.fechaNacimiento = fechaNacimiento;
     }
 
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
-    }
-    
-    /**
-     * Permite calcula la edad que tiene un jugador en una fecha dada.
-     * @param fecha Fecha contra la cual se desea calcular la edad del jugador.
-     * @return La edad que tiene en años en la fecha dada.
-     */
-    public byte calcularEdad(LocalDate fecha){
-        return (byte) Period.between(fechaNacimiento, fecha).getYears();
     }
 }

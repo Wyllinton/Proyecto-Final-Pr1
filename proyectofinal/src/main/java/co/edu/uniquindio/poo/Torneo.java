@@ -17,7 +17,9 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import main.java.co.edu.uniquindio.poo.Equipo;
+import main.java.co.edu.uniquindio.poo.GeneroTorneo;
 import main.java.co.edu.uniquindio.poo.Jugador;
+import main.java.co.edu.uniquindio.poo.Persona;
 import main.java.co.edu.uniquindio.poo.TipoTorneo;
 
 public class Torneo {
@@ -31,11 +33,14 @@ public class Torneo {
     private final TipoTorneo tipoTorneo;
     private final Collection<Equipo> equipos;
     private final GeneroTorneo generoTorneo;
+    private final Collection<Persona> jueces;
+    private Collection<EstadoEnfrentamiento> estadoEnfrentamiento;
+    private Collection<Equipo> informacionGeneralPosicionamientoTorneo;
 
     public Torneo(String nombre, LocalDate fechaInicio,
             LocalDate fechaInicioInscripciones,
             LocalDate fechaCierreInscripciones, byte numeroParticipantes,
-            byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo) {
+            byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo, GeneroTorneo generoTorneo) {
         
         ASSERTION.assertion( nombre != null , "El nombre es requerido");
         
@@ -55,6 +60,7 @@ public class Torneo {
         this.limiteEdad = limiteEdad;
         this.valorInscripcion = valorInscripcion;
         this.tipoTorneo = tipoTorneo;
+        this.generoTorneo = generoTorneo;
         this.equipos = new LinkedList<>();
     }
 
