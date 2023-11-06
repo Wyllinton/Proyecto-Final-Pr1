@@ -1,4 +1,4 @@
-package main.java.co.edu.uniquindio.poo.util;
+package co.edu.uniquindio.poo.util;
 
 import java.util.function.Supplier;
 

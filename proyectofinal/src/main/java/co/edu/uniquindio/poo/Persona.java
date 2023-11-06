@@ -1,4 +1,4 @@
-package main.java.co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo;
 import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 
 public class Persona {

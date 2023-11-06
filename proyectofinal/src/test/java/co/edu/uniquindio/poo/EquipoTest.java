@@ -1,5 +1,5 @@
 
-package test.java.co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,9 +12,9 @@ import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 
 import co.edu.uniquindio.poo.Torneo;
-import main.java.co.edu.uniquindio.poo.Equipo;
-import main.java.co.edu.uniquindio.poo.Persona;
-import main.java.co.edu.uniquindio.poo.TipoTorneo;
+import co.edu.uniquindio.poo.Equipo;
+import co.edu.uniquindio.poo.Persona;
+import co.edu.uniquindio.poo.TipoTorneo;
 
 public class EquipoTest {
     /**

@@ -1,4 +1,4 @@
-package main.java.co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo;
 
 public enum EstadoEnfrentamiento{
     PENDIENTE,

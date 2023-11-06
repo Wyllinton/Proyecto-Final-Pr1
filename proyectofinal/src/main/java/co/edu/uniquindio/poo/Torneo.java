@@ -7,21 +7,13 @@
  */
 package co.edu.uniquindio.poo;
 
-import static main.java.co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
-
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Optional;
 import java.util.function.Predicate;
-
-import main.java.co.edu.uniquindio.poo.Equipo;
-import main.java.co.edu.uniquindio.poo.GeneroTorneo;
-import main.java.co.edu.uniquindio.poo.Jugador;
-import main.java.co.edu.uniquindio.poo.Persona;
-import main.java.co.edu.uniquindio.poo.TipoTorneo;
-
+import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
 public class Torneo {
     private final String nombre;
     private LocalDate fechaInicio;

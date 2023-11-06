@@ -5,7 +5,7 @@
  * 
  * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
  */
-package main.java.co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo;
 
 import java.time.LocalDate;
 import java.time.Period;
