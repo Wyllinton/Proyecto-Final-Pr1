@@ -5,19 +5,23 @@
  * 
  * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
  */
-package main.java.co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo;
 
 import java.time.LocalDate;
 import java.time.Period;
-import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
+
+import util.AssertionUtil;
+
 
 public class Jugador extends Persona {
     private final LocalDate fechaNacimiento;
+    public GeneroPersona generoPersona;
 
-    public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento) {
+    public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento, GeneroPersona generoPersona) {
         super(nombre, apellido, email, celular);
-        ASSERTION.assertion( fechaNacimiento != null , "La fecha de nacimiento es requerida");
+        AssertionUtil.ASSERTION.assertion( fechaNacimiento != null , "La fecha de nacimiento es requerida");
         this.fechaNacimiento = fechaNacimiento;
+        this.generoPersona = generoPersona;
     }
 
     public LocalDate getFechaNacimiento() {

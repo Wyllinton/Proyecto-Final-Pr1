@@ -1,5 +1,5 @@
-package main.java.co.edu.uniquindio.poo;
-import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
+package co.edu.uniquindio.poo;
+import util.AssertionUtil;
 
 public class Persona {
     private final String nombre;
@@ -8,10 +8,10 @@ public class Persona {
     private final String celular;
 
     public Persona(String nombre,String apellido,String email, String celular){
-        ASSERTION.assertion( nombre != null && !nombre.isBlank() , "El nombre es requerido");
-        ASSERTION.assertion( apellido != null && !apellido.isBlank() , "El apellido es requerido");
-        ASSERTION.assertion( celular != null && !celular.isBlank() , "El celular es requerido");
-        ASSERTION.assertion( email != null && !email.isBlank() , "El email es requerido");
+        AssertionUtil.ASSERTION.assertion( nombre != null && !nombre.isBlank() , "El nombre es requerido");
+        AssertionUtil.ASSERTION.assertion( apellido != null && !apellido.isBlank() , "El apellido es requerido");
+        AssertionUtil.ASSERTION.assertion( celular != null && !celular.isBlank() , "El celular es requerido");
+        AssertionUtil.ASSERTION.assertion( email != null && !email.isBlank() , "El email es requerido");
         
         this.nombre = nombre;
         this.apellido = apellido;

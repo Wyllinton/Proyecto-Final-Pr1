@@ -1,11 +1,5 @@
-/**
- * Clase para probar el registro de los equipos
- * @author Área de programación UQ
- * @since 2023-08
- * 
- * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
- */
-package test.java.co.edu.uniquindio.poo;
+
+package co.edu.uniquindio.poo;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,6 +10,11 @@ import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
+
+import co.edu.uniquindio.poo.Torneo;
+import co.edu.uniquindio.poo.Equipo;
+import co.edu.uniquindio.poo.Persona;
+import co.edu.uniquindio.poo.TipoTorneo;
 
 public class EquipoTest {
     /**

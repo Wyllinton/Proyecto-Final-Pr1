@@ -3,27 +3,28 @@
  * @author Área de programación UQ
  * @since 2023-09
  * 
- * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
+ * Licencia GNU/GPL V3.0 (URL de la licencia correcta aquí)
  */
-package main.java.co.edu.uniquindio.poo;
+package co.edu.uniquindio.poo;
 
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import static co.edu.uniquindio.poo.util.AssertionUtil.ASSERTION;
+import util.AssertionUtil;
 
-public record Equipo(String nombre,Persona representante,Collection<Jugador> jugadores) {
-    public Equipo{
-        ASSERTION.assertion( nombre != null && !nombre.isBlank() , "El nombre es requerido");
-        ASSERTION.assertion( representante != null , "El representante es requerido");
+public class Equipo {
+    String nombre;
+    Persona representante;
+    Collection<Jugador> jugadores;
+    Collection<Enfrentamiento> enfrentamientos;
+
+    public Equipo (String nombre, Persona representante) {
+        AssertionUtil.ASSERTION.assertion(nombre != null && !nombre.trim().isEmpty(), "El nombre es requerido");
+        AssertionUtil.ASSERTION.assertion(representante != null, "El representante es requerido");
+        this.nombre = nombre;
+        this.representante = representante;
     }
-
-    public Equipo(String nombre,Persona representante){
-        this(nombre,representante,new LinkedList<>());
-    }
-
     /**
      * Permite registrar un jugador en un equipo siempre y cuando no exista ya un jugador registrado en el equipo con el mismo nombre y apellido
      * @param jugador Jugador que se desea registrar.
@@ -34,22 +35,54 @@ public record Equipo(String nombre,Persona representante,Collection<Jugador> jug
     }
 
     /**
-     * Permimte buscar un jugador en el equipo basado en su nombre y apellido.
+     * Permite buscar un jugador en el equipo basado en su nombre y apellido.
      * @param jugador Jugador que se desea buscar
      * @return Optional con el jugador que coincida con el nombre y apellido del jugador buscado, 
-     * o Optinal vacío en caso de no encontrar un jugador en el equipo con dicho nombre y apellido.
+     * o Optional vacío en caso de no encontrar un jugador en el equipo con dicho nombre y apellido.
      */
-    public Optional<Jugador> buscarJugador(Jugador jugador){
-        Predicate<Jugador> nombreIgual = j->j.getNombre().equals(jugador.getNombre());
-        Predicate<Jugador> apellidoIgual = j->j.getApellido().equals(jugador.getApellido());
+    public Optional<Jugador> buscarJugador(Jugador jugador) {
+        Predicate<Jugador> nombreIgual = j -> j.getNombre().equals(jugador.getNombre());
+        Predicate<Jugador> apellidoIgual = j -> j.getApellido().equals(jugador.getApellido());
         return jugadores.stream().filter(nombreIgual.and(apellidoIgual)).findAny();
     }
 
     /**
-     * Valida que no exista ya un jugador registrado con el mismo nombre y apellido, en caso de haberlo genera un assertion error.
+     * Valida que no exista ya un jugador registrado con el mismo nombre y apellido, en caso de haberlo genera un AssertionError.
      */
     private void validarJugadorExiste(Jugador jugador) {
         boolean existeJugador = buscarJugador(jugador).isPresent();
-        ASSERTION.assertion( !existeJugador,"El jugador ya esta registrado");
+        AssertionUtil.ASSERTION.assertion(!existeJugador, "El jugador ya está registrado");
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Persona getRepresentante() {
+        return representante;
+    }
+
+    public void setRepresentante(Persona representante) {
+        this.representante = representante;
+    }
+
+    public Collection<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(Collection<Jugador> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    public Collection<Enfrentamiento> getEnfrentamientos() {
+        return enfrentamientos;
+    }
+
+    public void setEnfrentamientos(Collection<Enfrentamiento> enfrentamientos) {
+        this.enfrentamientos = enfrentamientos;
     }
 }
