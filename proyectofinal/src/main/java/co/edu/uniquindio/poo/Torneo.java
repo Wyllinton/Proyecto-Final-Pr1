@@ -31,6 +31,7 @@ public class Torneo {
     private final Collection<Persona> jueces;
     private Collection<EstadoEnfrentamiento> estadoEnfrentamiento;
     private Collection<Equipo> informacionGeneralPosicionamientoTorneo;
+    private Collection<Enfrentamiento> listaEnfrentamientos;
 
     public Torneo(String nombre, LocalDate fechaInicio,
             LocalDate fechaInicioInscripciones,
@@ -59,6 +60,7 @@ public class Torneo {
         this.jueces = new ArrayList<>();
         this.estadoEnfrentamiento = new ArrayList<>();
         this.informacionGeneralPosicionamientoTorneo = new ArrayList<>();
+        this.listaEnfrentamientos = new ArrayList<>();
     }
 
     public String getNombre() {
@@ -91,6 +93,14 @@ public class Torneo {
 
     public TipoTorneo getTipoTorneo() {
         return tipoTorneo;
+    }
+
+    public Collection<Enfrentamiento> getListaEnfrentamientos() {
+        return listaEnfrentamientos;
+    }
+
+    public void setListaEnfrentamientos(Collection<Enfrentamiento> listaEnfrentamientos) {
+        this.listaEnfrentamientos = listaEnfrentamientos;
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {
@@ -155,7 +165,7 @@ public class Torneo {
      * @return Un Optional<Equipo> con el equipo cuyo nombre sea igual al nombre buscado, o un Optional vacio en caso de no encontrar un equipo con nombre igual al dado.
      */
     public Optional<Equipo> buscarEquipoPorNombre(String nombre){
-        Predicate<Equipo> condicion = equipo->equipo.nombre().equals(nombre);
+        Predicate<Equipo> condicion = equipo->equipo.getNombre().equals(nombre);
         return equipos.stream().filter(condicion).findAny();
     }
 
@@ -221,4 +231,13 @@ public class Torneo {
         var edadAlInicioTorneo = jugador.calcularEdad(fechaInicio);
         AssertionUtil.ASSERTION.assertion( limiteEdad == 0 || limiteEdad >= edadAlInicioTorneo , "No se pueden registrar jugadores que excedan el limite de edad del torneo"); 
     }
+
+    public Collection<Equipo> mostrarEnfrenatmientosDeEquipo (String nombreEquipo){
+        var equipo = buscarEquipoPorNombre(nombreEquipo);
+        
+        Collection<Enfrentamiento> enfrentamientos = equipo.
+        
+        return null;
+    }
+
 }
