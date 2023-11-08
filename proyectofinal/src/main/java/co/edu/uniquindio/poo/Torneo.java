@@ -147,7 +147,7 @@ public class Torneo {
      * Valida que no exista ya un equipo registrado con el mismo nombre, en caso de haberlo genera un assertion error.
      */
     private void validarEquipoExiste(Equipo equipo) {
-        boolean existeEquipo = buscarEquipoPorNombre(equipo.nombre()).isPresent();
+        boolean existeEquipo = buscarEquipoPorNombre(equipo.getNombre()).isPresent();
         AssertionUtil.ASSERTION.assertion( !existeEquipo,"El equipo ya esta registrado");
     }
 
@@ -232,12 +232,15 @@ public class Torneo {
         AssertionUtil.ASSERTION.assertion( limiteEdad == 0 || limiteEdad >= edadAlInicioTorneo , "No se pueden registrar jugadores que excedan el limite de edad del torneo"); 
     }
 
+    public Collection<Enfrentamiento> obtenerListaEnfrentamientosDeEquipo(Equipo equipo){
+        return equipo.getEnfrentamientos();
+    }
+
     public Collection<Equipo> mostrarEnfrenatmientosDeEquipo (String nombreEquipo){
         var equipo = buscarEquipoPorNombre(nombreEquipo);
+        equipo.ifPresent( (aux) -> obtenerListaEnfrentamientosDeEquipo(aux));
         
-        Collection<Enfrentamiento> enfrentamientos = equipo.
-        
-        return null;
+        return equipo;
     }
 
 }
