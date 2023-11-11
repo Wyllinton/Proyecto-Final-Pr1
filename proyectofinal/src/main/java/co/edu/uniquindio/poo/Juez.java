@@ -13,8 +13,8 @@ public class Juez extends Persona {
     private final LocalDate fechaNacimiento;
     private String licenciaJuez;
 
-    public Juez(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento, String licenciaJuez) {
-        super(nombre, apellido, email, celular);
+    public Juez(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento, GeneroPersona generoPersona, String licenciaJuez) {
+        super(nombre, apellido, email, celular, generoPersona);
         assert fechaNacimiento != null : "La fecha de nacimiento es requerida";
         assert fechaNacimiento.isBefore(LocalDate.now()) : "La fecha de nacimiento debe ser anterior a la fecha actual";
         assert licenciaJuez != null : "La licencia del juez no puede ser nula";

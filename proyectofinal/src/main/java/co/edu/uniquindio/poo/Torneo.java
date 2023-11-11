@@ -22,30 +22,26 @@ public class Torneo {
     private LocalDate fechaInicio;
     private LocalDate fechaInicioInscripciones;
     private LocalDate fechaCierreInscripciones;
-    private final byte numeroParticipantes;
-    private final byte limiteEdad;
+    private final int numeroParticipantes;
+    private final int limiteEdad;
     private final int valorInscripcion;
     private final TipoTorneo tipoTorneo;
     private final Collection<Equipo> equipos;
     private final GeneroTorneo generoTorneo;
     private final Collection<Persona> jueces;
-    private Collection<EstadoEnfrentamiento> estadoEnfrentamiento;
+    private Collection<EstadoEnfrentamiento> estadosEnfrentamientos;
     private Collection<Equipo> informacionGeneralPosicionamientoTorneo;
     private Collection<Enfrentamiento> listaEnfrentamientos;
 
     public Torneo(String nombre, LocalDate fechaInicio,
             LocalDate fechaInicioInscripciones,
-            LocalDate fechaCierreInscripciones, byte numeroParticipantes,
-            byte limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo, GeneroTorneo generoTorneo) {
+            LocalDate fechaCierreInscripciones, int numeroParticipantes,
+            int limiteEdad, int valorInscripcion,TipoTorneo tipoTorneo, GeneroTorneo generoTorneo) {
         
         AssertionUtil.ASSERTION.assertion( nombre != null , "El nombre es requerido");
-        
-        
-        
         AssertionUtil.ASSERTION.assertion( numeroParticipantes >= 0, "El número de participantes no puede ser negativo");
         AssertionUtil.ASSERTION.assertion( limiteEdad >= 0,"El limite de edad no puede ser negativo");
         AssertionUtil.ASSERTION.assertion( valorInscripcion >= 0,"El valor de la inscripción no puede ser negativo");
-        
         
         this.nombre = nombre;
         setFechaInicioInscripciones(fechaInicioInscripciones);
@@ -58,9 +54,10 @@ public class Torneo {
         this.generoTorneo = generoTorneo;
         this.equipos = new ArrayList<>();
         this.jueces = new ArrayList<>();
-        this.estadoEnfrentamiento = new ArrayList<>();
+        this.estadosEnfrentamientos = new ArrayList<>();
         this.informacionGeneralPosicionamientoTorneo = new ArrayList<>();
         this.listaEnfrentamientos = new ArrayList<>();
+
     }
 
     public String getNombre() {
@@ -79,11 +76,11 @@ public class Torneo {
         return fechaCierreInscripciones;
     }
 
-    public byte getNumeroParticipantes() {
+    public int getNumeroParticipantes() {
         return numeroParticipantes;
     }
 
-    public byte getLimiteEdad() {
+    public int getLimiteEdad() {
         return limiteEdad;
     }
 
@@ -93,6 +90,10 @@ public class Torneo {
 
     public TipoTorneo getTipoTorneo() {
         return tipoTorneo;
+    }
+
+    public GeneroTorneo getGeneroTorneo(){
+        return generoTorneo;
     }
 
     public Collection<Enfrentamiento> getListaEnfrentamientos() {
@@ -235,12 +236,12 @@ public class Torneo {
     public Collection<Enfrentamiento> obtenerListaEnfrentamientosDeEquipo(Equipo equipo){
         return equipo.getEnfrentamientos();
     }
-
-    public Collection<Equipo> mostrarEnfrenatmientosDeEquipo (String nombreEquipo){
-        var equipo = buscarEquipoPorNombre(nombreEquipo);
-        equipo.ifPresent( (aux) -> obtenerListaEnfrentamientosDeEquipo(aux));
+    
+    //public Collection<Equipo> mostrarEnfrenatmientosDeEquipo (String nombreEquipo){
+        //var equipo = buscarEquipoPorNombre(nombreEquipo);
+        //equipo.ifPresent( (aux) -> obtenerListaEnfrentamientosDeEquipo(aux));
         //Necesito obtener esta puta lista
-        return aux;
-    }
-
+        //return aux;
+    //}
+    
 }

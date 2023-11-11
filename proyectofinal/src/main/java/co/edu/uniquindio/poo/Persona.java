@@ -6,8 +6,9 @@ public class Persona {
     private final String apellido;
     private final String email;
     private final String celular;
+    public GeneroPersona generoPersona;
 
-    public Persona(String nombre,String apellido,String email, String celular){
+    public Persona(String nombre,String apellido,String email, String celular, GeneroPersona generoPersona){
         AssertionUtil.ASSERTION.assertion( nombre != null && !nombre.isBlank() , "El nombre es requerido");
         AssertionUtil.ASSERTION.assertion( apellido != null && !apellido.isBlank() , "El apellido es requerido");
         AssertionUtil.ASSERTION.assertion( celular != null && !celular.isBlank() , "El celular es requerido");
@@ -17,6 +18,7 @@ public class Persona {
         this.apellido = apellido;
         this.email = email;
         this.celular = celular;
+        this.generoPersona = generoPersona;
     }
 
     public String getNombre() {
@@ -33,5 +35,9 @@ public class Persona {
 
     public String getCelular() {
         return celular;
+    }
+
+    public GeneroPersona getGeneroPersona() {
+        return generoPersona;
     }
 }

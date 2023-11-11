@@ -7,6 +7,7 @@
  */
 package co.edu.uniquindio.poo;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -24,6 +25,8 @@ public class Equipo {
         AssertionUtil.ASSERTION.assertion(representante != null, "El representante es requerido");
         this.nombre = nombre;
         this.representante = representante;
+        this.jugadores = new ArrayList<>();
+        this.enfrentamientos = new ArrayList<>();
     }
     /**
      * Permite registrar un jugador en un equipo siempre y cuando no exista ya un jugador registrado en el equipo con el mismo nombre y apellido
