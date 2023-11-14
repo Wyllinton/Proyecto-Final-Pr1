@@ -10,14 +10,14 @@ public class Enfrentamiento {
     public String nombreLugar;
     public String ubicacion;
     public LocalDateTime fechaHora;
-    public Collection<Equipo> equipos;
+    public Equipo equipoLocal;
+    public Equipo equipoVisitante;
     public Collection<Juez> jueces;
     public EstadoEnfrentamiento estadoEnfrentamiento;
     public int resultadoLocal;
     public int resultadoVisitante;
     
-    public Enfrentamiento(String nombreLugar, String ubicacion, LocalDateTime fechaHora, Collection<Equipo> equipos,
-            Collection<Juez> jueces, EstadoEnfrentamiento estadoEnfrentamiento, int resultadoLocal,
+    public Enfrentamiento(String nombreLugar, String ubicacion, LocalDateTime fechaHora, Equipo equipoLocal, Equipo equipoVisitante, Collection<Juez> jueces, EstadoEnfrentamiento estadoEnfrentamiento, int resultadoLocal,
             int resultadoVisitante) {
         AssertionUtil.ASSERTION.assertion( nombreLugar != null , "El nombre es requerido");
         AssertionUtil.ASSERTION.assertion( ubicacion != null , "La ubicación es requerida");
@@ -25,13 +25,24 @@ public class Enfrentamiento {
         this.nombreLugar = nombreLugar;
         this.ubicacion = ubicacion;
         this.fechaHora = fechaHora;
-        this.equipos = equipos;
+        this.equipoLocal = equipoLocal;
+        this.equipoVisitante = equipoVisitante;
         this.jueces = jueces;
         this.estadoEnfrentamiento = estadoEnfrentamiento;
         this.resultadoLocal = resultadoLocal;
         this.resultadoVisitante = resultadoVisitante;
     }
 
+    public void agregarPuntuacion(int resultadoLocal, int resultadoVisitante) {
+        if (estadoEnfrentamiento == EstadoEnfrentamiento.TERMINADO) {
+            this.resultadoLocal = resultadoLocal;
+            this.resultadoVisitante = resultadoVisitante;
+        } else {
+            // Puedes manejar esto de acuerdo a tus requisitos.
+            // Podrías lanzar una excepción, imprimir un mensaje, etc.
+            System.out.println("No se puede agregar puntuación en este estado.");
+        }
+    }
     public String getNombreLugar() {
         return nombreLugar;
     }
@@ -56,12 +67,20 @@ public class Enfrentamiento {
         this.fechaHora = fechaHora;
     }
 
-    public Collection<Equipo> getEquipos() {
-        return equipos;
+    public Equipo getEquipoLocal() {
+        return equipoLocal;
     }
 
-    public void setEquipos(Collection<Equipo> equipos) {
-        this.equipos = equipos;
+     public Equipo getEquipoVisitante() {
+        return equipoVisitante;
+    }
+
+    public void setEquipoLocal(Equipo equipoLocal) {
+        this.equipoLocal = equipoLocal;
+    }
+
+    public void setEquipoVisitante(Equipo equipoVisitante) {
+        this.equipoVisitante = equipoVisitante;
     }
 
     public Collection<Juez> getJueces() {
@@ -94,6 +113,15 @@ public class Enfrentamiento {
 
     public void setResultadoVisitante(int resultadoVisitante) {
         this.resultadoVisitante = resultadoVisitante;
+    }
+
+    public boolean involucraJuez(String numeroLicencia) {
+        for (Juez juez : jueces) {
+            if (juez.getLicenciaJuez() == numeroLicencia) {
+                return true;
+            }
+        }
+        return false;
     }
     
     

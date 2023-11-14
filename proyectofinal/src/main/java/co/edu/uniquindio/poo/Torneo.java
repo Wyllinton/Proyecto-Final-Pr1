@@ -14,6 +14,8 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import javax.management.RuntimeErrorException;
+
 import util.AssertionUtil;
 
 
@@ -180,7 +182,7 @@ public class Torneo {
     public void registrarJugador(String nombre, Jugador jugador) {
         var equipo = buscarEquipoPorNombre(nombre);
         equipo.ifPresent( (e)->registrarJugador(e, jugador) );
-    }
+    } 
 
     /**
      * Permite registrar un jugador en el equipo siempre y cuando este dentro de las fechas validas de registro, 
@@ -193,12 +195,20 @@ public class Torneo {
         AssertionUtil.ASSERTION.assertion( !LocalDate.now().isAfter(fechaCierreInscripciones) , "No se pueden registrar jugadores después del a fecha de cierre de inscripciones");
         validarLimiteEdadJugador(jugador); 
         validarJugadorExiste(jugador);
+        validacionGeneroJugadorYTorneo(jugador);
         equipo.registrarJugador(jugador);
     }
 
 
-    public void validacionGeneroJugadorYTorneo(){
-        
+
+    public void validacionGeneroJugadorYTorneo(Jugador jugador){
+        if(getGeneroTorneo() == GeneroTorneo.MASCULINO && jugador.getGeneroPersona() == GeneroPersona.FEMENINO){
+            throw new RuntimeErrorException(new Error("No puedes ingresar una mujer en el torneo masculino"));
+        }
+
+        else if(getGeneroTorneo() == GeneroTorneo.FEMENINO && jugador.getGeneroPersona() == GeneroPersona.MASCULINO){
+            throw new RuntimeErrorException(new Error("No puedes ingresar un hombre en el torneo femenino"));
+        }
     }
 
 
@@ -237,11 +247,29 @@ public class Torneo {
         return equipo.getEnfrentamientos();
     }
     
-    //public Collection<Equipo> mostrarEnfrenatmientosDeEquipo (String nombreEquipo){
-        //var equipo = buscarEquipoPorNombre(nombreEquipo);
-        //equipo.ifPresent( (aux) -> obtenerListaEnfrentamientosDeEquipo(aux));
-        //Necesito obtener esta puta lista
-        //return aux;
-    //}
-    
+public Collection<Enfrentamiento> mostrarEnfrentamientosDeEquipo(Equipo equipo) {
+    String nombreEquipo = equipo.getNombre();
+    Optional<Equipo> buscarEquipo = buscarEquipoPorNombre(nombreEquipo);
+
+    if (buscarEquipo.isPresent()) {
+
+        Collection<Enfrentamiento> enfrentamientosDeEquipo = equipo.getEnfrentamientos();
+        return enfrentamientosDeEquipo;
+    }
+    else {
+
+        String mensaje = "El equipo no tiene enfrentamientos próximos";
+        System.out.println(mensaje);
+        return null;
+    }
+}
+
+    /*public Collection<Enfrentamiento> obtenerEnfrentamientosDeJuez(String numeroLicencia) {
+        Collection<Enfrentamiento> enfrentamientosDeJuez = new ArrayList<>();
+        for (Enfrentamiento enfrentamiento : listaEnfrentamientos) {
+            if (enfrentamiento.involucraJuez(numeroLicencia)) {
+            enfrentamientosDeJuez.add(enfrentamiento);
+        }
+    }
+} */
 }

@@ -28,6 +28,9 @@ public class Equipo {
         this.jugadores = new ArrayList<>();
         this.enfrentamientos = new ArrayList<>();
     }
+    public void agregarEnfrentamiento(Enfrentamiento enfrentamiento){
+        enfrentamientos.add(enfrentamiento);
+    }
     /**
      * Permite registrar un jugador en un equipo siempre y cuando no exista ya un jugador registrado en el equipo con el mismo nombre y apellido
      * @param jugador Jugador que se desea registrar.
@@ -85,7 +88,4 @@ public class Equipo {
         return enfrentamientos;
     }
 
-    public void setEnfrentamientos(Collection<Enfrentamiento> enfrentamientos) {
-        this.enfrentamientos = enfrentamientos;
-    }
 }

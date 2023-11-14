@@ -26,4 +26,19 @@ public class Juez extends Persona {
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
+
+    public String getLicenciaJuez(){
+        return licenciaJuez;
+    }
+    /*
+    public Collection<Enfrentamiento> obtenerEnfrentamientosDeJuez(String numeroLicencia) {
+        Collection<Enfrentamiento> enfrentamientosDeJuez = new ArrayList<>();
+        for (Enfrentamiento enfrentamiento : enfrentamientos) {
+            if (enfrentamiento.involucraJuez(numeroLicencia)) {
+            enfrentamientosDeJuez.add(enfrentamiento);
+        }
+    }
+    return enfrentamientosDeJuez;
+}*/
+
 }
