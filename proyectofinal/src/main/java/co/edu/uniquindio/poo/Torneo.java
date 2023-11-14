@@ -30,7 +30,7 @@ public class Torneo {
     private final TipoTorneo tipoTorneo;
     private final Collection<Equipo> equipos;
     private final GeneroTorneo generoTorneo;
-    private final Collection<Persona> jueces;
+    private final Collection<Juez> jueces;
     private Collection<EstadoEnfrentamiento> estadosEnfrentamientos;
     private Collection<Equipo> informacionGeneralPosicionamientoTorneo;
     private Collection<Enfrentamiento> listaEnfrentamientos;
@@ -61,7 +61,15 @@ public class Torneo {
         this.listaEnfrentamientos = new ArrayList<>();
 
     }
-
+    public void agregarEnfrentamiento(Enfrentamiento enfrentamiento){
+        listaEnfrentamientos.add(enfrentamiento);
+    }
+    public void registrarJuez(Juez juez){
+        jueces.add(juez);
+    }
+    public Collection<Juez> getJueces() {
+        return jueces;
+    }   
     public String getNombre() {
         return nombre;
     }
@@ -247,29 +255,27 @@ public class Torneo {
         return equipo.getEnfrentamientos();
     }
     
-public Collection<Enfrentamiento> mostrarEnfrentamientosDeEquipo(Equipo equipo) {
-    String nombreEquipo = equipo.getNombre();
-    Optional<Equipo> buscarEquipo = buscarEquipoPorNombre(nombreEquipo);
-
-    if (buscarEquipo.isPresent()) {
-
-        Collection<Enfrentamiento> enfrentamientosDeEquipo = equipo.getEnfrentamientos();
-        return enfrentamientosDeEquipo;
-    }
-    else {
-
-        String mensaje = "El equipo no tiene enfrentamientos próximos";
-        System.out.println(mensaje);
-        return null;
-    }
-}
-
-    /*public Collection<Enfrentamiento> obtenerEnfrentamientosDeJuez(String numeroLicencia) {
+    public Collection<Enfrentamiento> mostrarEnfrentamientosDeEquipo(String nombreEquipo) {
+        boolean buscarEquipo = buscarEquipoPorNombre(nombreEquipo).isPresent();
+        if (buscarEquipo == true) {
+            Equipo equipoBuscado = buscarEquipoPorNombre(nombreEquipo).get();
+            Collection<Enfrentamiento> enfrentamientosDeEquipo = equipoBuscado.getEnfrentamientos();
+            return enfrentamientosDeEquipo;
+        }
+        else {
+            System.out.println("No se encontró un equipo con el nombre buscado");
+            return Collections.emptyList();
+        }//Well done MIlo!!!
+    } 
+    public Collection<Enfrentamiento> obtenerEnfrentamientosDeJuez(Collection<Enfrentamiento> listaEnfrentamientos, String numeroLicencia){
         Collection<Enfrentamiento> enfrentamientosDeJuez = new ArrayList<>();
         for (Enfrentamiento enfrentamiento : listaEnfrentamientos) {
             if (enfrentamiento.involucraJuez(numeroLicencia)) {
             enfrentamientosDeJuez.add(enfrentamiento);
         }
     }
-} */
+        return enfrentamientosDeJuez;
+
+    }
+
 }

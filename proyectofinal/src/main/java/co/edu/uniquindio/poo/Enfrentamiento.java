@@ -2,6 +2,7 @@ package co.edu.uniquindio.poo;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import util.AssertionUtil;
@@ -17,7 +18,7 @@ public class Enfrentamiento {
     public int resultadoLocal;
     public int resultadoVisitante;
     
-    public Enfrentamiento(String nombreLugar, String ubicacion, LocalDateTime fechaHora, Equipo equipoLocal, Equipo equipoVisitante, Collection<Juez> jueces, EstadoEnfrentamiento estadoEnfrentamiento, int resultadoLocal,
+    public Enfrentamiento(String nombreLugar, String ubicacion, LocalDateTime fechaHora, Equipo equipoLocal, Equipo equipoVisitante, EstadoEnfrentamiento estadoEnfrentamiento, int resultadoLocal,
             int resultadoVisitante) {
         AssertionUtil.ASSERTION.assertion( nombreLugar != null , "El nombre es requerido");
         AssertionUtil.ASSERTION.assertion( ubicacion != null , "La ubicación es requerida");
@@ -27,12 +28,14 @@ public class Enfrentamiento {
         this.fechaHora = fechaHora;
         this.equipoLocal = equipoLocal;
         this.equipoVisitante = equipoVisitante;
-        this.jueces = jueces;
+        this.jueces = new ArrayList<>();
         this.estadoEnfrentamiento = estadoEnfrentamiento;
         this.resultadoLocal = resultadoLocal;
         this.resultadoVisitante = resultadoVisitante;
     }
-
+    public void agregarJuez(Juez juez){
+        jueces.add(juez);
+    }
     public void agregarPuntuacion(int resultadoLocal, int resultadoVisitante) {
         if (estadoEnfrentamiento == EstadoEnfrentamiento.TERMINADO) {
             this.resultadoLocal = resultadoLocal;
