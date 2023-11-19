@@ -7,14 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
-
-import co.edu.uniquindio.poo.Torneo;
-import co.edu.uniquindio.poo.Equipo;
-import co.edu.uniquindio.poo.Persona;
-import co.edu.uniquindio.poo.TipoTorneo;
 
 public class EquipoTest {
     /**
@@ -109,5 +105,26 @@ public class EquipoTest {
         assertThrows(Throwable.class, ()-> torneo.registrarEquipo(equipo));
         
         LOG.info("Fin de prueba inscripcionNoAbierta...");
+    }
+    @Test
+    public void partidosGanados(){
+        LOG.info("");
+        Torneo torneo1 = new Torneo("Mundial", LocalDate.of(2024, 1, 1), LocalDate.of(2023, 11, 27), LocalDate.of(2023, 12, 27), 2, 0, 0, TipoTorneo.REGIONAL, GeneroTorneo.MIXTO);
+
+        Persona representante = new Persona("Jorge", "lopez", "asdjais@gmail.co", "3093725645", GeneroPersona.MASCULINO);
+        
+        Equipo equipo1 = new Equipo("A", representante);
+        Equipo equipo2 = new Equipo("B", representante);
+
+        Enfrentamiento enfrentamiento1 = new Enfrentamiento("Atanasio", "Carrera 10", LocalDateTime.of(2024, 1, 10, 10, 10), equipo1, equipo2, EstadoEnfrentamiento.TERMINADO, 1, 0);
+
+        Enfrentamiento enfrentamiento2 = new Enfrentamiento("Centenario", "Calle 29", LocalDateTime.of(2024, 1, 10, 10, 10, 0), equipo1, equipo2, EstadoEnfrentamiento.APLAZADO, 2, 0);
+
+        enfrentamiento1.procesarResultados();
+        enfrentamiento2.procesarResultados();
+
+        assertEquals(1, equipo1.getPartidosGanados());
+        
+        LOG.info("");
     }
 }

@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
@@ -127,24 +126,17 @@ public class TorneoTest {
         
         LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
     }
+    
     @Test 
     public void validacionGenero(){
         LOG.info("Inicio de prueba de validacion de genero en inscripción anterior al inicio...");
+        Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 11, 30), LocalDate.of(2023, 11, 28), LocalDate.of(2023, 11, 29), 2, 0, 0, TipoTorneo.REGIONAL, GeneroTorneo.MASCULINO);
 
-
-
-
-
-        Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 10, 1), LocalDate.of(2023, 8, 1), LocalDate.of(2023, 9, 15), 24, 0, 0, TipoTorneo.LOCAL, GeneroTorneo.MASCULINO);
+        Persona representante = new Persona("Luis", "Sanchez", "tyybjk@fgh", "32567", GeneroPersona.MASCULINO);
+        Equipo equipo1 = new Equipo("Raptors", representante);
+        Jugador jugador1 = new Jugador("Maria", "Martinez", "rtyhnm@hj", "23456", LocalDate.of(2000, 5, 10), GeneroPersona.FEMENINO);
         
-        Jugador jugadorMasculino1 = new Jugador("Milo", "Popez", "jaksjdhashdkasjhda@kjsadfsf.com", "32434535345",LocalDate.of(2005,11,1), GeneroPersona.MASCULINO);
-        Jugador jugadorMasculino2 = new Jugador("Juan pablo", "lope", "adjhskdha@gmail.com", "30293484202", LocalDate.of(2005, 9, 8), GeneroPersona.MASCULINO);
-        Jugador jugadorFemenino1 = new Jugador("Valen", "Nuñez", "rumeuv@rty", "345678", LocalDate.of(2000, 10, 8), GeneroPersona.FEMENINO);
-        
-        torneo1.validacionGeneroJugadorYTorneo(jugadorMasculino1);
-
-
-
+        assertThrows(Throwable.class, () -> torneo1.registrarJugador(equipo1, jugador1));
 
 
         LOG.info("Fin de prueba de validacion de genero en inscripción anterior al inicio...");
@@ -156,13 +148,6 @@ public class TorneoTest {
         
         Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 12, 1), LocalDate.of(2023, 11, 10), LocalDate.of(2023, 11, 15), 24, 0, 0, TipoTorneo.LOCAL, GeneroTorneo.MASCULINO);
 
-        Jugador jugador1M = new Jugador("Milo", "Popez", "jaksjdhashdkasjhda@kjsadfsf.com", "32434535345",LocalDate.of(2005,11,1), GeneroPersona.MASCULINO);
-        Jugador jugador2M = new Jugador("Juan pablo", "lope", "juanp.lopezuqvirtual.edu.co", "30293484202", LocalDate.of(2005, 9, 8), GeneroPersona.MASCULINO);
-        Jugador jugador3M = new Jugador("Valen", "Nuñez", "rumeuv@rty", "345678", LocalDate.of(2000, 10, 8), GeneroPersona.MASCULINO);
-        Jugador jugador4M = new Jugador("hector", "Popez", "jaksjdhashdkasjhda@kjsadfsf.com", "32434535345",LocalDate.of(2005,11,1), GeneroPersona.MASCULINO);
-        Jugador jugador5M = new Jugador("arnoldo", "lope", "adjhskdha@gmail.com", "30293484202", LocalDate.of(2005, 9, 8), GeneroPersona.MASCULINO);
-        Jugador jugador6M = new Jugador("verstappen", "Nuñez", "rumeuv@rty", "345678", LocalDate.of(2000, 10, 8), GeneroPersona.MASCULINO);
-        
         Persona representante1 = new Persona("asJdadsadaasadsada", "Matallanera", "rataatata@gmail.com", "3146785432", GeneroPersona.MASCULINO);
         Persona representante2 = new Persona("asJdadsadaasadsada", "Matallanera", "rataatata@gmail.com", "3146785432", GeneroPersona.FEMENINO);
         Persona representante3 = new Persona("asJdadsadaasadsada", "Matallanera", "rataatata@gmail.com", "3146785432", GeneroPersona.MASCULINO);
@@ -201,14 +186,7 @@ public class TorneoTest {
         
         Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 12, 1), LocalDate.of(2023, 11, 10), LocalDate.of(2023, 11, 15), 24, 0, 0, TipoTorneo.LOCAL, GeneroTorneo.MASCULINO);
 
-        Jugador jugador1M = new Jugador("Milo", "Popez", "jaksjdhashdkasjhda@kjsadfsf.com", "32434535345",LocalDate.of(2005,11,1), GeneroPersona.MASCULINO);
-        Jugador jugador2M = new Jugador("Juan pablo", "lope", "juanp.lopezuqvirtual.edu.co", "30293484202", LocalDate.of(2005, 9, 8), GeneroPersona.MASCULINO);
-        Jugador jugador3M = new Jugador("Valen", "Nuñez", "rumeuv@rty", "345678", LocalDate.of(2000, 10, 8), GeneroPersona.MASCULINO);
-        Jugador jugador4M = new Jugador("hector", "Popez", "jaksjdhashdkasjhda@kjsadfsf.com", "32434535345",LocalDate.of(2005,11,1), GeneroPersona.MASCULINO);
-        Jugador jugador5M = new Jugador("arnoldo", "lope", "adjhskdha@gmail.com", "30293484202", LocalDate.of(2005, 9, 8), GeneroPersona.MASCULINO);
-        Jugador jugador6M = new Jugador("verstappen", "Nuñez", "rumeuv@rty", "345678", LocalDate.of(2000, 10, 8), GeneroPersona.MASCULINO);
         Juez juez1 = new Juez("Alberto", "Arbelaez", "ertyuijh@hjkl", "345678", LocalDate.of(2000, 12, 31), GeneroPersona.MASCULINO, "3456jh");
-        Juez juez2 = new Juez("Mario", "Zapata", "pojhgf@dfg", "98345", LocalDate.of(1999, 12, 6), GeneroPersona.MASCULINO, "lmnb4");
         
         Persona representante1 = new Persona("asJdadsadaasadsada", "Matallanera", "rataatata@gmail.com", "3146785432", GeneroPersona.MASCULINO);
         Persona representante2 = new Persona("asJdadsadaasadsada", "Matallanera", "rataatata@gmail.com", "3146785432", GeneroPersona.FEMENINO);
@@ -230,12 +208,6 @@ public class TorneoTest {
         Enfrentamiento enfrentamiento2 = new Enfrentamiento("Atanasio", "Asomeca", LocalDateTime.of(2023, 6, 27, 16, 0, 0), equipo1, equipo3,EstadoEnfrentamiento.PENDIENTE, 0, 0);
         Enfrentamiento enfrentamiento3 = new Enfrentamiento("Centenario", "Centro", LocalDateTime.of(2023, 11, 7, 20, 0, 0), equipo1, equipo4,EstadoEnfrentamiento.PENDIENTE, 0, 0);
         
-        //torneo1.registrarJugador(equipo1, jugador1M);
-        //torneo1.registrarJugador(equipo1, jugador2M);
-        //torneo1.registrarJugador(equipo2, jugador3M);
-        //torneo1.registrarJugador(equipo2, jugador3M);
-        //torneo1.registrarJugador(equipo2, jugador1M);
-        
         torneo1.agregarEnfrentamiento(enfrentamiento1);
         torneo1.agregarEnfrentamiento(enfrentamiento2);
         torneo1.agregarEnfrentamiento(enfrentamiento3);
@@ -244,9 +216,39 @@ public class TorneoTest {
         enfrentamiento3.agregarJuez(juez1);
 
         assertTrue(torneo1.obtenerEnfrentamientosDeJuez(torneo1.getListaEnfrentamientos(),juez1.getLicenciaJuez()).contains(enfrentamiento2));
+        
         assertEquals(2, torneo1.obtenerEnfrentamientosDeJuez(torneo1.getListaEnfrentamientos(),juez1.getLicenciaJuez()).size());
         
         
         LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
+    }
+
+    @Test
+    public void testOrdenarEquipos() {
+        // Crear algunos equipos con estadísticas
+        Persona repre1 = new Persona("Alex", "Arias", "drtyhhj@rtyu", "3215654", GeneroPersona.MASCULINO);
+        Persona repre2 = new Persona("Rasputia", "Mendez", "gygbnj@ty", "38203802", GeneroPersona.FEMENINO);
+        Persona repre3 = new Persona("Jorge", "Mendez", "gygbnj@ty", "38203802", GeneroPersona.MASCULINO);
+
+
+        
+        Equipo equipo1 = new Equipo("Brasil", repre1);
+        Equipo equipo2 = new Equipo("Colombia", repre2);
+        Equipo equipo3 = new Equipo("Argentina", repre3);
+        
+        Enfrentamiento partido1 = new Enfrentamiento("Parque de los principes", "Paris", LocalDateTime.of(2023, 12, 31, 15, 30, 0), equipo2, equipo3, EstadoEnfrentamiento.TERMINADO, 14, 0);
+        Enfrentamiento partido2 = new Enfrentamiento("Estadio Metropolitano", "Colombia", LocalDateTime.of(2023, 12, 30, 10, 0, 0), equipo3, equipo1, EstadoEnfrentamiento.TERMINADO, 3, 2);
+        Enfrentamiento partido3 = new Enfrentamiento("Estadio Metropolitano", "Colombia", LocalDateTime.of(2023, 12, 31, 15, 30, 0 ), equipo2, equipo1, EstadoEnfrentamiento.TERMINADO, 2, 2);
+
+        partido1.procesarResultados();
+        partido2.procesarResultados();
+        partido3.procesarResultados();
+
+        Torneo torneo = new Torneo("Eliminatorias", LocalDate.of(2023, 12, 30), LocalDate.of(2023, 10, 20), LocalDate.of(2023,11, 24), 3, 0, 0, TipoTorneo.REGIONAL, GeneroTorneo.MIXTO);
+
+        torneo.registrarEquipo(equipo1);
+        torneo.registrarEquipo(equipo2);
+        torneo.registrarEquipo(equipo3);
+        torneo.ordenarEquipos();
     }
 }

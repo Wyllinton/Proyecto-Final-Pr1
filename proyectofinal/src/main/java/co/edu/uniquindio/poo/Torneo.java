@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -31,7 +32,6 @@ public class Torneo {
     private final Collection<Equipo> equipos;
     private final GeneroTorneo generoTorneo;
     private final Collection<Juez> jueces;
-    private Collection<EstadoEnfrentamiento> estadosEnfrentamientos;
     private Collection<Equipo> informacionGeneralPosicionamientoTorneo;
     private Collection<Enfrentamiento> listaEnfrentamientos;
 
@@ -56,7 +56,6 @@ public class Torneo {
         this.generoTorneo = generoTorneo;
         this.equipos = new ArrayList<>();
         this.jueces = new ArrayList<>();
-        this.estadosEnfrentamientos = new ArrayList<>();
         this.informacionGeneralPosicionamientoTorneo = new ArrayList<>();
         this.listaEnfrentamientos = new ArrayList<>();
 
@@ -139,9 +138,9 @@ public class Torneo {
      * @throws Se genera un error si ya existe un equipo registrado con el mismo nombre, o en caso de que las inscripciones del torneo no esten abiertas.
      */
     public void registrarEquipo(Equipo equipo) {
-        validarEquipoExiste(equipo); 
+        validarEquipoExiste(equipo);
 
-        validarInscripciopnesAbiertas(); 
+        validarInscripciopnesAbiertas();
 
         equipos.add(equipo);
     }
@@ -182,7 +181,7 @@ public class Torneo {
 
     /**
      * Permite registrar un jugador en el equipo siempre y cuando este dentro de las fechas validas de registro, 
-     * no exista ya un jugador registrado con el mismo nombre y apellido y el jugador no exceda el limite de edad del torneo.
+     * no exista ya un jugador registrado con el mismo nombre y apellido y el jugador no exceda el limite de edad del torneo.Co
      *  
      * @param nombre Nombre del equipo en que se desea registrar el jugador
      * @param jugador Jugador que se desea registrar.
@@ -207,8 +206,6 @@ public class Torneo {
         equipo.registrarJugador(jugador);
     }
 
-
-
     public void validacionGeneroJugadorYTorneo(Jugador jugador){
         if(getGeneroTorneo() == GeneroTorneo.MASCULINO && jugador.getGeneroPersona() == GeneroPersona.FEMENINO){
             throw new RuntimeErrorException(new Error("No puedes ingresar una mujer en el torneo masculino"));
@@ -218,9 +215,6 @@ public class Torneo {
             throw new RuntimeErrorException(new Error("No puedes ingresar un hombre en el torneo femenino"));
         }
     }
-
-
-
 
     /**
      * Permite buscar un jugador basado en su nombre y apellido en todos los equipos registrados en el torneo.
@@ -265,8 +259,9 @@ public class Torneo {
         else {
             System.out.println("No se encontró un equipo con el nombre buscado");
             return Collections.emptyList();
-        }//Well done MIlo!!!
+        }
     } 
+
     public Collection<Enfrentamiento> obtenerEnfrentamientosDeJuez(Collection<Enfrentamiento> listaEnfrentamientos, String numeroLicencia){
         Collection<Enfrentamiento> enfrentamientosDeJuez = new ArrayList<>();
         for (Enfrentamiento enfrentamiento : listaEnfrentamientos) {
@@ -275,7 +270,15 @@ public class Torneo {
         }
     }
         return enfrentamientosDeJuez;
-
     }
-
+    
+    public void ordenarEquipos() {
+        // Ordenamos los equipos por su puntuacion de manera descendente
+        ArrayList<Equipo> listaOrdenable = new ArrayList<>(equipos);
+        Collections.sort(listaOrdenable, Comparator.comparingInt(Equipo :: getPuntuacion).reversed());
+        System.out.println("Tabla de posiciones: ");
+        for (Equipo equipo : listaOrdenable){
+            System.out.println(equipo.getNombre() + " - Puntuación: " + equipo.getPuntuacion() + " Partidos Ganados: " + equipo.getPartidosGanados() + "  Empatados: " + equipo.getPartidosEmpatados() + "  Perdidos: " + equipo.getPartidosPerdidos());
+        }
+    }
 }

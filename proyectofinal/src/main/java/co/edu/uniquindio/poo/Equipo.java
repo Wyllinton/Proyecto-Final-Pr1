@@ -2,7 +2,7 @@
  * Registro que agrupa los datos de un Equipo
  * @author Área de programación UQ
  * @since 2023-09
- * 
+ *
  * Licencia GNU/GPL V3.0 (URL de la licencia correcta aquí)
  */
 package co.edu.uniquindio.poo;
@@ -14,11 +14,14 @@ import java.util.function.Predicate;
 
 import util.AssertionUtil;
 
-public class Equipo {
+public class Equipo{
     String nombre;
     Persona representante;
     Collection<Jugador> jugadores;
     Collection<Enfrentamiento> enfrentamientos;
+    int partidosEmpatados;
+    int partidosGanados;
+    int partidosPerdidos;
 
     public Equipo (String nombre, Persona representante) {
         AssertionUtil.ASSERTION.assertion(nombre != null && !nombre.trim().isEmpty(), "El nombre es requerido");
@@ -86,6 +89,35 @@ public class Equipo {
 
     public Collection<Enfrentamiento> getEnfrentamientos() {
         return enfrentamientos;
+    }
+
+    public void incrementarPartidosGanados() {
+        partidosGanados++;
+    }
+
+    public void incrementarPartidosPerdidos() {
+        partidosPerdidos++;
+    }
+
+    public void incrementarPartidosEmpatados() {
+        partidosEmpatados++;
+    }
+
+    public int getPartidosGanados(){
+        return partidosGanados;
+    }
+
+    public int getPartidosPerdidos(){
+        return partidosPerdidos;
+    }
+    
+    public int getPartidosEmpatados(){
+        return partidosEmpatados;
+    }
+
+    public int getPuntuacion() {
+        // Puedes ajustar la lógica según tus necesidades específicas
+        return partidosGanados * 3 + partidosEmpatados;
     }
 
 }

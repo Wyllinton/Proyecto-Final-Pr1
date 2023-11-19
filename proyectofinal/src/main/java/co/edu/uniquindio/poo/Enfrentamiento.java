@@ -126,13 +126,17 @@ public class Enfrentamiento {
         }
         return false;
     }
-    
-    
-     
-}
 
-/*Se desea poder agendar los enfrentamientos, indicando el lugar donde se realizará el
-enfrentamiento (nombre, ubicación), la fecha y hora del enfrentamiento, los equipos que
-se enfrentarán, el juez o jueces que arbitraran el encuentro, el resultado del
-enfrentamiento cuando haya concluido (puntos realizados por cada equipo) y el estado
-del enfrentamiento. Los posibles estados de un enfrentamiento son:*/
+    public void procesarResultados() {
+        if (resultadoLocal > resultadoVisitante) {
+            equipoLocal.incrementarPartidosGanados();
+            equipoVisitante.incrementarPartidosPerdidos();
+        } else if (resultadoLocal < resultadoVisitante) {
+            equipoLocal.incrementarPartidosPerdidos();
+            equipoVisitante.incrementarPartidosGanados();
+        } else {
+            equipoLocal.incrementarPartidosEmpatados();
+            equipoVisitante.incrementarPartidosEmpatados();
+        }
+    }
+}
