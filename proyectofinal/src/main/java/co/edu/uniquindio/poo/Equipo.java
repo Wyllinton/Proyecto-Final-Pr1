@@ -15,13 +15,13 @@ import java.util.function.Predicate;
 import util.AssertionUtil;
 
 public class Equipo{
-    String nombre;
-    Persona representante;
-    Collection<Jugador> jugadores;
-    Collection<Enfrentamiento> enfrentamientos;
-    int partidosEmpatados;
-    int partidosGanados;
-    int partidosPerdidos;
+    private String nombre;
+    private Persona representante;
+    private Collection<Jugador> jugadores;
+    private Collection<Enfrentamiento> enfrentamientos;
+    private int partidosEmpatados;
+    private int partidosGanados;
+    private int partidosPerdidos;
 
     public Equipo (String nombre, Persona representante) {
         AssertionUtil.ASSERTION.assertion(nombre != null && !nombre.trim().isEmpty(), "El nombre es requerido");

@@ -129,7 +129,8 @@ public class TorneoTest {
     
     @Test 
     public void validacionGenero(){
-        LOG.info("Inicio de prueba de validacion de genero en inscripción anterior al inicio...");
+        LOG.info("Inicio de prueba de validacion de genero");
+
         Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 11, 30), LocalDate.of(2023, 11, 28), LocalDate.of(2023, 11, 29), 2, 0, 0, TipoTorneo.REGIONAL, GeneroTorneo.MASCULINO);
 
         Persona representante = new Persona("Luis", "Sanchez", "tyybjk@fgh", "32567", GeneroPersona.MASCULINO);
@@ -139,14 +140,14 @@ public class TorneoTest {
         assertThrows(Throwable.class, () -> torneo1.registrarJugador(equipo1, jugador1));
 
 
-        LOG.info("Fin de prueba de validacion de genero en inscripción anterior al inicio...");
+        LOG.info("Fin de prueba de validacion de genero");
     }
     
     @Test
     public void mostrarEnfrentamientosDeEquipo(){
         LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
         
-        Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 12, 1), LocalDate.of(2023, 11, 10), LocalDate.of(2023, 11, 15), 24, 0, 0, TipoTorneo.LOCAL, GeneroTorneo.MASCULINO);
+        Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 12, 1), LocalDate.of(2023, 11, 15), LocalDate.of(2023, 11, 25), 24, 0, 0, TipoTorneo.LOCAL, GeneroTorneo.MASCULINO);
 
         Persona representante1 = new Persona("asJdadsadaasadsada", "Matallanera", "rataatata@gmail.com", "3146785432", GeneroPersona.MASCULINO);
         Persona representante2 = new Persona("asJdadsadaasadsada", "Matallanera", "rataatata@gmail.com", "3146785432", GeneroPersona.FEMENINO);
@@ -184,9 +185,10 @@ public class TorneoTest {
     public void mostrarEnfrentamientosDeJuez(){
         LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
         
-        Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 12, 1), LocalDate.of(2023, 11, 10), LocalDate.of(2023, 11, 15), 24, 0, 0, TipoTorneo.LOCAL, GeneroTorneo.MASCULINO);
+        Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 12, 1), LocalDate.of(2023, 11, 10), LocalDate.of(2023, 11, 20), 24, 0, 0, TipoTorneo.LOCAL, GeneroTorneo.MASCULINO);
 
         Juez juez1 = new Juez("Alberto", "Arbelaez", "ertyuijh@hjkl", "345678", LocalDate.of(2000, 12, 31), GeneroPersona.MASCULINO, "3456jh");
+        Juez juez2 = new Juez("Maria", "Martinez", "qwfgfds@fh", "328545678", LocalDate.of(1990, 8, 20), GeneroPersona.FEMENINO, "wetvd");
         
         Persona representante1 = new Persona("asJdadsadaasadsada", "Matallanera", "rataatata@gmail.com", "3146785432", GeneroPersona.MASCULINO);
         Persona representante2 = new Persona("asJdadsadaasadsada", "Matallanera", "rataatata@gmail.com", "3146785432", GeneroPersona.FEMENINO);
@@ -203,9 +205,12 @@ public class TorneoTest {
         torneo1.registrarEquipo(equipo3);
         torneo1.registrarEquipo(equipo4);
         torneo1.registrarJuez(juez1);
+        torneo1.registrarJuez(juez2);
 
         Enfrentamiento enfrentamiento1 = new Enfrentamiento("El campin", "Carrera 10", LocalDateTime.of(2023, 6, 28, 15, 30, 0), equipo3, equipo2,EstadoEnfrentamiento.PENDIENTE, 0, 0);
+        
         Enfrentamiento enfrentamiento2 = new Enfrentamiento("Atanasio", "Asomeca", LocalDateTime.of(2023, 6, 27, 16, 0, 0), equipo1, equipo3,EstadoEnfrentamiento.PENDIENTE, 0, 0);
+        
         Enfrentamiento enfrentamiento3 = new Enfrentamiento("Centenario", "Centro", LocalDateTime.of(2023, 11, 7, 20, 0, 0), equipo1, equipo4,EstadoEnfrentamiento.PENDIENTE, 0, 0);
         
         torneo1.agregarEnfrentamiento(enfrentamiento1);

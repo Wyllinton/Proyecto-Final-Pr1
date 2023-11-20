@@ -32,7 +32,6 @@ public class Torneo {
     private final Collection<Equipo> equipos;
     private final GeneroTorneo generoTorneo;
     private final Collection<Juez> jueces;
-    private Collection<Equipo> informacionGeneralPosicionamientoTorneo;
     private Collection<Enfrentamiento> listaEnfrentamientos;
 
     public Torneo(String nombre, LocalDate fechaInicio,
@@ -56,7 +55,6 @@ public class Torneo {
         this.generoTorneo = generoTorneo;
         this.equipos = new ArrayList<>();
         this.jueces = new ArrayList<>();
-        this.informacionGeneralPosicionamientoTorneo = new ArrayList<>();
         this.listaEnfrentamientos = new ArrayList<>();
 
     }
@@ -64,6 +62,7 @@ public class Torneo {
         listaEnfrentamientos.add(enfrentamiento);
     }
     public void registrarJuez(Juez juez){
+        validarJuezExiste(juez);
         jueces.add(juez);
     }
     public Collection<Juez> getJueces() {
@@ -161,6 +160,15 @@ public class Torneo {
         AssertionUtil.ASSERTION.assertion( !existeEquipo,"El equipo ya esta registrado");
     }
 
+    private void validarJuezExiste (Juez juez){
+        boolean existeJuez = buscarJuezPorNombre(juez.getNombre()).isPresent();
+        AssertionUtil.ASSERTION.assertion( !existeJuez,"El juez ya esta registrado");
+    }
+
+    public Optional<Juez> buscarJuezPorNombre(String nombre){
+        Predicate<Juez> condicion = juez ->juez.getNombre().equals(nombre);
+        return jueces.stream().filter(condicion).findAny();
+    }
     /**
      * Permite obtener una copia no modificable de la lista de los equipos registrados.
      * @return Collection<Equipo> no modificable de los equipos registrados en el torneo.
@@ -267,13 +275,14 @@ public class Torneo {
         for (Enfrentamiento enfrentamiento : listaEnfrentamientos) {
             if (enfrentamiento.involucraJuez(numeroLicencia)) {
             enfrentamientosDeJuez.add(enfrentamiento);
+            System.out.println(enfrentamiento.getNombreLugar()+enfrentamiento.getUbicacion());
         }
     }
         return enfrentamientosDeJuez;
     }
     
     public void ordenarEquipos() {
-        // Ordenamos los equipos por su puntuacion de manera descendente
+        // Ordenamos los equipos por su puntuacion de manera descendente y se imprime los resultados de sus partidos
         ArrayList<Equipo> listaOrdenable = new ArrayList<>(equipos);
         Collections.sort(listaOrdenable, Comparator.comparingInt(Equipo :: getPuntuacion).reversed());
         System.out.println("Tabla de posiciones: ");

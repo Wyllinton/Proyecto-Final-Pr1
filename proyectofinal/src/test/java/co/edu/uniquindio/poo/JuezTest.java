@@ -1,5 +1,7 @@
 package co.edu.uniquindio.poo;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -14,20 +16,11 @@ public void obtenerListaJuez (){
 
     Torneo torneo = new Torneo("UCL", LocalDate.of(2023, 11, 30), LocalDate.of(2023, 11, 15), LocalDate.of(2023, 11, 25), 10, 30, 0, TipoTorneo.REGIONAL, GeneroTorneo.MIXTO);
 
-    Persona representante1 = new Persona("Maria", "Alvarez", "ujbvgyuik@fd", "2345678", GeneroPersona.FEMENINO);
-    Equipo equipo1 = new Equipo("Barcitas FC", representante1);
+    Juez juez = new Juez("Andres", "Ibarra", "tyuujk@ghj", "321453", LocalDate.of(2000, 1, 23), GeneroPersona.MASCULINO, "efnri43");
+    
+    torneo.registrarJuez(juez);
 
-    Jugador jugador1 = new Jugador("Alexis", "Barco", "drtyh@dfg", "234567", LocalDate.of(2000, 4, 6), GeneroPersona.MASCULINO);
-    Jugador jugador2 = new Jugador("Carmen", "Amaranto", "frtb@dh", "098765", LocalDate.of(2000, 4, 6), GeneroPersona.FEMENINO);
-    Jugador jugador3 = new Jugador("Pamela", "Velez", "rtgbnkh@dfgb", "350853", LocalDate.of(2000, 4, 6), GeneroPersona.FEMENINO);
-    Jugador jugador4 = new Jugador("Luis", "Acosta", "jhftgvb@vjk", "0851368", LocalDate.of(2000, 4, 6), GeneroPersona.MASCULINO);
-    Jugador jugador5 = new Jugador("Martin", "Perez", "mngfdrtyh@bgf", "75236", LocalDate.of(2000, 4, 6), GeneroPersona.MASCULINO);
-
-    equipo1.registrarJugador(jugador1);
-    equipo1.registrarJugador(jugador2);
-    equipo1.registrarJugador(jugador3);
-    equipo1.registrarJugador(jugador4);
-    equipo1.registrarJugador(jugador5);
+    assertTrue(torneo.getJueces().contains(juez));
 
 
     LOG.info("Fin de prueba obtenerListaJuez...");
