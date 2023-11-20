@@ -1,18 +1,18 @@
 /**
- * Clase que agrupa los datos de un Juez
- * @author Área de programación UQ
- * @since 2023-09
  * 
  * Licencia GNU/GPL V3.0 (URL de la licencia correcta aquí)
  */
-package co.edu.uniquindio.poo;
 
+//paquete
+package co.edu.uniquindio.poo;
+//imports
 import java.time.LocalDate;
 
 public class Juez extends Persona {
+    // Atributos
     private final LocalDate fechaNacimiento;
     private String licenciaJuez;
-
+//Constructor
     public Juez(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento, GeneroPersona generoPersona, String licenciaJuez) {
         super(nombre, apellido, email, celular, generoPersona);
         assert fechaNacimiento != null : "La fecha de nacimiento es requerida";
@@ -22,7 +22,7 @@ public class Juez extends Persona {
         this.licenciaJuez = licenciaJuez;
         this.fechaNacimiento = fechaNacimiento;
     }
-
+//Setters y getters
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -30,15 +30,4 @@ public class Juez extends Persona {
     public String getLicenciaJuez(){
         return licenciaJuez;
     }
-    /*
-    public Collection<Enfrentamiento> obtenerEnfrentamientosDeJuez(String numeroLicencia) {
-        Collection<Enfrentamiento> enfrentamientosDeJuez = new ArrayList<>();
-        for (Enfrentamiento enfrentamiento : enfrentamientos) {
-            if (enfrentamiento.involucraJuez(numeroLicencia)) {
-            enfrentamientosDeJuez.add(enfrentamiento);
-        }
-    }
-    return enfrentamientosDeJuez;
-}*/
-
 }

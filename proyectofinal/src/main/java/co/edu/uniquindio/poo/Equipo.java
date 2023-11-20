@@ -1,8 +1,4 @@
 /**
- * Registro que agrupa los datos de un Equipo
- * @author Área de programación UQ
- * @since 2023-09
- *
  * Licencia GNU/GPL V3.0 (URL de la licencia correcta aquí)
  */
 package co.edu.uniquindio.poo;
@@ -114,9 +110,8 @@ public class Equipo{
     public int getPartidosEmpatados(){
         return partidosEmpatados;
     }
-
+    //Funcionalidad que permite obtener una puntuación, basado en sus partidos ganados y empatados
     public int getPuntuacion() {
-        // Puedes ajustar la lógica según tus necesidades específicas
         return partidosGanados * 3 + partidosEmpatados;
     }
 

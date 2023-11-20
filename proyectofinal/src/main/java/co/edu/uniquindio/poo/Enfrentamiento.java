@@ -43,8 +43,6 @@ public class Enfrentamiento {
             this.resultadoLocal = resultadoLocal;
             this.resultadoVisitante = resultadoVisitante;
         } else {
-            // Puedes manejar esto de acuerdo a tus requisitos.
-            // Podrías lanzar una excepción, imprimir un mensaje, etc.
             System.out.println("No se puede agregar puntuación en este estado.");
         }
     }
@@ -120,7 +118,7 @@ public class Enfrentamiento {
     public void setResultadoVisitante(int resultadoVisitante) {
         this.resultadoVisitante = resultadoVisitante;
     }
-
+    //La siguiente funcionalidad nos verifica si un juez hace parte de un torneo, luego esta funcionalidad será usada para obtener la lista de un juez basado en su licencia
     public boolean involucraJuez(String numeroLicencia) {
         for (Juez juez : jueces) {
             if (juez.getLicenciaJuez() == numeroLicencia) {
@@ -129,7 +127,7 @@ public class Enfrentamiento {
         }
         return false;
     }
-
+    //La siguiente funcionalidad nos procesa un resultado, añadiendo los partidos ganados, perdidos o empatados, según estas estadisticas se clasificaran los equipos porteriormente en la tabla
     public void procesarResultados() {
         if (resultadoLocal > resultadoVisitante) {
             equipoLocal.incrementarPartidosGanados();
@@ -142,7 +140,8 @@ public class Enfrentamiento {
             equipoVisitante.incrementarPartidosEmpatados();
         }
     }
-
+    
+    //La siguiente funcionalidad actualizará el estado de un enfrentamiento según la fecha actual y la fecha en que se instanció el objeto
     public void actualizarEstadoEnfrentamiento() {
         LocalDateTime now = LocalDateTime.now();
 
@@ -178,14 +177,6 @@ public class Enfrentamiento {
         
         else{
             estadoEnfrentamiento = EstadoEnfrentamiento.APLAZADO;
-        }
-
-        //FALTAN LOS DE APLAZADO:
+        }   
     }
-    /*
-     * PENDIENTE: Estado inicial de un enfrentamiento, será posible asignarlo a los enfrentamientos que se registran pero que según su fecha y hora programada aun no se han jugado.
-     * EN JUEGO: Estado que indica que el enfrentamiento ya inició. Solo es posible asignar este estado si según la fecha y hora de inicio del enfrentamiento es oportuno hacerlo.
-     * FINALIZADO: Estado que indica que el enfrentamiento ha concluido, el sistema debe cambiar de forma automática a dicho estado cuando se registra el resultado del enfrentamiento. Sin dicho resultado no es posible asignar éste estado.
-     * APLAZADO: Este estado indica que por alguna razón el enfrentamiento no se puede jugar.
-     */
 }

@@ -33,9 +33,8 @@ public void crearEnfrentamiento (){
     LOG.info("Fin de prueba de creación de enfrentamientos");
 }
     @Test
-public void crearEnfrentamientoM(){
-    LOG.info("Inicio de prueba de creación de enfrentamientos");
-    Torneo torneo = new Torneo("UCL", LocalDate.of(2023, 11, 30), LocalDate.of(2023, 11, 15), LocalDate.of(2023, 11, 25), 10, 30, 0, TipoTorneo.REGIONAL, GeneroTorneo.MIXTO);
+public void crearEnfrentamientoyActualizar(){
+    LOG.info("Inicio de prueba de creación de enfrentamiento y actualización de su estado");
 
     Persona representante1 = new Persona("Maria", "Alvarez", "ujbvgyuik@fd", "2345678", GeneroPersona.FEMENINO);
     Persona representante2 = new Persona("Miyer", "Quiñones", "tyuvghik@dfh", "34587", GeneroPersona.FEMENINO);
@@ -55,11 +54,11 @@ public void crearEnfrentamientoM(){
     assertEquals(EstadoEnfrentamiento.EN_JUEGO, partido3.getEstadoEnfrentamiento());
     
 
-    LOG.info("Fin de prueba de creación de enfrentamientos");
+    LOG.info("Fin de prueba de creación de enfrentamientos y actualización de su estado");
 }
 @Test
     public void mostrarEnfrentamientosDeJuez(){
-        LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
+        LOG.info("Inicio prueba obtener los enfrentamientos del Juez");
         
         Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 12, 1), LocalDate.of(2023, 11, 10), LocalDate.of(2023, 11, 20), 24, 0, 0, TipoTorneo.LOCAL, GeneroTorneo.MASCULINO);
 
@@ -88,6 +87,6 @@ public void crearEnfrentamientoM(){
         assertEquals(2, torneo1.obtenerEnfrentamientosDeJuez(torneo1.getListaEnfrentamientos(),juez1.getLicenciaJuez()).size());
         
         
-        LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
+        LOG.info("Fin de prueba obtener los enfrentamientos del Juez");
     }
 }

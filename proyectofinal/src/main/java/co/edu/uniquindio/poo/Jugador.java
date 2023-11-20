@@ -1,8 +1,5 @@
 /**
- * Clase que agrupa los datos de un Jugador
- * @author Área de programación UQ
- * @since 2023-09
- * 
+ *
  * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
  */
 package co.edu.uniquindio.poo;
@@ -14,14 +11,15 @@ import util.AssertionUtil;
 
 
 public class Jugador extends Persona {
+    //Atributos
     private final LocalDate fechaNacimiento;
-    
+    //Constructor
     public Jugador(String nombre, String apellido, String email, String celular, LocalDate fechaNacimiento, GeneroPersona generoPersona) {
         super(nombre, apellido, email, celular, generoPersona);
         AssertionUtil.ASSERTION.assertion( fechaNacimiento != null , "La fecha de nacimiento es requerida");
         this.fechaNacimiento = fechaNacimiento;
     }
-
+    //setters y getters
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }

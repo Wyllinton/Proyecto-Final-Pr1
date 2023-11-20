@@ -183,7 +183,7 @@ public class TorneoTest {
     }
     @Test
     public void mostrarEnfrentamientosDeJuez(){
-        LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
+        LOG.info("Inicia prueba de los enfrentamientos del juez.");
         
         Torneo torneo1 = new Torneo("Copa Mundo", LocalDate.of(2023, 12, 1), LocalDate.of(2023, 11, 10), LocalDate.of(2023, 11, 20), 24, 0, 0, TipoTorneo.LOCAL, GeneroTorneo.MASCULINO);
 
@@ -225,12 +225,15 @@ public class TorneoTest {
         assertEquals(2, torneo1.obtenerEnfrentamientosDeJuez(torneo1.getListaEnfrentamientos(),juez1.getLicenciaJuez()).size());
         
         
-        LOG.info("Fin de prueba Cierre inscripción anterior al inicio...");
+        LOG.info("Fin de prueba de enfrentamientos de juez");
     }
 
     @Test
     public void testOrdenarEquipos() {
         // Crear algunos equipos con estadísticas
+
+        LOG.info("Inicia prueba de el ordenamiento descendente de equipos");
+
         Persona repre1 = new Persona("Alex", "Arias", "drtyhhj@rtyu", "3215654", GeneroPersona.MASCULINO);
         Persona repre2 = new Persona("Rasputia", "Mendez", "gygbnj@ty", "38203802", GeneroPersona.FEMENINO);
         Persona repre3 = new Persona("Jorge", "Mendez", "gygbnj@ty", "38203802", GeneroPersona.MASCULINO);
@@ -255,5 +258,7 @@ public class TorneoTest {
         torneo.registrarEquipo(equipo2);
         torneo.registrarEquipo(equipo3);
         torneo.ordenarEquipos();
+
+        LOG.info("Finaliza prueba de el ordenamiento descendente de equipos");
     }
 }

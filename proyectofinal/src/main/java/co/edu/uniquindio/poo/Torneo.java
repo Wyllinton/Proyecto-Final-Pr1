@@ -1,7 +1,7 @@
 /**
  * Clase que agrupa los datos de un Torneo
- * @author Área de programación UQ
- * @since 2023-08
+ * @author Area
+ * @since 2023-11
  * 
  * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
  */
@@ -21,6 +21,7 @@ import util.AssertionUtil;
 
 
 public class Torneo {
+    //Atributos
     private final String nombre;
     private LocalDate fechaInicio;
     private LocalDate fechaInicioInscripciones;
@@ -33,7 +34,7 @@ public class Torneo {
     private final GeneroTorneo generoTorneo;
     private final Collection<Juez> jueces;
     private Collection<Enfrentamiento> listaEnfrentamientos;
-
+    //Constructor
     public Torneo(String nombre, LocalDate fechaInicio,
             LocalDate fechaInicioInscripciones,
             LocalDate fechaCierreInscripciones, int numeroParticipantes,
@@ -58,16 +59,19 @@ public class Torneo {
         this.listaEnfrentamientos = new ArrayList<>();
 
     }
+    //Añade un enfrentamiento a la lista de enfrentamientos
     public void agregarEnfrentamiento(Enfrentamiento enfrentamiento){
         listaEnfrentamientos.add(enfrentamiento);
     }
+    //Añade un juez a la lista de jueces
     public void registrarJuez(Juez juez){
         validarJuezExiste(juez);
         jueces.add(juez);
     }
+    //Setters y getters
     public Collection<Juez> getJueces() {
         return jueces;
-    }   
+    }
     public String getNombre() {
         return nombre;
     }
@@ -214,6 +218,12 @@ public class Torneo {
         equipo.registrarJugador(jugador);
     }
 
+    /**
+     * Permite verificar si el jugador que se registrará en el equipo si cumple las condiciones de genero del torneo, si es masculino, solo 
+     * se permitirán hombres en el equipo, lanzando una assertion en caso de que el jugador que se desea incluir en el equipo es mujer.
+     * Y asi sucesivamente dependiendo del tipo dfe torneo
+     */
+
     public void validacionGeneroJugadorYTorneo(Jugador jugador){
         if(getGeneroTorneo() == GeneroTorneo.MASCULINO && jugador.getGeneroPersona() == GeneroPersona.FEMENINO){
             throw new RuntimeErrorException(new Error("No puedes ingresar una mujer en el torneo masculino"));
@@ -256,7 +266,9 @@ public class Torneo {
     public Collection<Enfrentamiento> obtenerListaEnfrentamientosDeEquipo(Equipo equipo){
         return equipo.getEnfrentamientos();
     }
-    
+    /*
+    Mostrar enfrentamiento recibe un string cómo parámetro para poder buscar el equipo, seguido de esto el equipo tiene que estar registrado para poder encontrarse, con esto ya se accede a los enfrentamientos que tenga registrado el equipo
+    */
     public Collection<Enfrentamiento> mostrarEnfrentamientosDeEquipo(String nombreEquipo) {
         boolean buscarEquipo = buscarEquipoPorNombre(nombreEquipo).isPresent();
         if (buscarEquipo == true) {
@@ -268,21 +280,25 @@ public class Torneo {
             System.out.println("No se encontró un equipo con el nombre buscado");
             return Collections.emptyList();
         }
-    } 
+    }
+
+    /*
+    Cuándo se le pasa el número de licencia del juez a los parámetros de la función imprime el nombre y el lugar de cada enfrentamiento y retorna la lista de los enfrentamientos de los que se encargará el juez
+    */
 
     public Collection<Enfrentamiento> obtenerEnfrentamientosDeJuez(Collection<Enfrentamiento> listaEnfrentamientos, String numeroLicencia){
         Collection<Enfrentamiento> enfrentamientosDeJuez = new ArrayList<>();
         for (Enfrentamiento enfrentamiento : listaEnfrentamientos) {
             if (enfrentamiento.involucraJuez(numeroLicencia)) {
             enfrentamientosDeJuez.add(enfrentamiento);
-            System.out.println(enfrentamiento.getNombreLugar()+enfrentamiento.getUbicacion());
+            System.out.println(enfrentamiento.getNombreLugar() + enfrentamiento.getUbicacion());
         }
     }
         return enfrentamientosDeJuez;
     }
     
     public void ordenarEquipos() {
-        // Ordenamos los equipos por su puntuacion de manera descendente y se imprime los resultados de sus partidos
+        // Ordenamos los equipos por su puntuacion de manera descendente y se imprime los resultados de sus partidos, ademas de informar la cantidad de partidos ganados, empatados y perdidos por equipo
         ArrayList<Equipo> listaOrdenable = new ArrayList<>(equipos);
         Collections.sort(listaOrdenable, Comparator.comparingInt(Equipo :: getPuntuacion).reversed());
         System.out.println("Tabla de posiciones: ");
